@@ -1,4 +1,4 @@
-name: Deploy a página da Lovable
+name: Deploy Lovable site
 
 on:
   push:
@@ -25,15 +25,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup Node
-     - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
       - name: Install dependencies
         run: npm install
-          cache: npm
-      - name: Install dependencies
-        run: npm ci
       - name: Build
         run: npm run build
       - name: Setup Pages
