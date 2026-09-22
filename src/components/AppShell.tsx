@@ -16,8 +16,8 @@ export function AppShell({ rota, children }: { rota: string; children: ReactNode
   if (!perfil) {
     return (
       <Bloqueio
-        titulo="Selecione um perfil de acesso"
-        texto="Entre com um dos três perfis para usar o sistema."
+        titulo="Faça login para continuar"
+        texto="Entre com seu usuário e senha para usar o sistema."
         acao={() => navigate({ to: "/" })}
       />
     );
@@ -60,7 +60,9 @@ export function AppShell({ rota, children }: { rota: string; children: ReactNode
           <div className="flex items-center gap-3 border-l border-border pl-3">
             <div className="text-right">
               <p className="text-sm font-bold text-foreground">{responsavel || "Operador"}</p>
-              <p className="text-xs text-muted-foreground">Perfil {perfil}</p>
+              <p className="text-xs text-muted-foreground">
+                {perfil === "admin" ? "Acesso Geral" : `Perfil ${perfil}`}
+              </p>
             </div>
             <button
               onClick={() => {

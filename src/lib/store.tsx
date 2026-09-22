@@ -8,7 +8,7 @@ import {
   type ReactNode,
 } from "react";
 
-export type Perfil = "1" | "2" | "3";
+export type Perfil = "1" | "2" | "3" | "admin";
 
 export type Item = {
   id: string;
@@ -254,7 +254,25 @@ export const PERFIS: Record<Perfil, { nome: string; descricao: string; rotas: st
     descricao: "Consulta e baixa de estoque apenas.",
     rotas: ["/saida"],
   },
+  admin: {
+    nome: "Acesso Geral — Administrador",
+    descricao: "Acesso liberado a todas as telas do sistema.",
+    rotas: ["/cadastro", "/entrada", "/compras", "/saida"],
+  },
 };
+
+export const USUARIOS: { usuario: string; senha: string; perfil: Perfil }[] = [
+  { usuario: "Leonardo", senha: "1234", perfil: "1" },
+  { usuario: "Tatiane", senha: "1234", perfil: "3" },
+  { usuario: "Geral", senha: "1234", perfil: "admin" },
+];
+
+export function autenticar(usuario: string, senha: string) {
+  const u = usuario.trim().toLowerCase();
+  const conta = USUARIOS.find((c) => c.usuario.toLowerCase() === u);
+  if (!conta || conta.senha !== senha) return null;
+  return conta;
+}
 
 export function podeAcessar(perfil: Perfil | null, rota: string) {
   if (!perfil) return false;
