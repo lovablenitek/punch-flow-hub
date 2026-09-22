@@ -45,7 +45,7 @@ function Entrada() {
   const n4 = useMemo(() => n3.filter((i) => !face || i.face === face), [n3, face]);
   const n5 = useMemo(() => n4.filter((i) => !fabricante || i.fabricante === fabricante), [n4, fabricante]);
 
-  const selecionado: Item | null = n5.length === 1 ? n5[0] : null;
+  const selecionado: Item | null = n5.length === 1 ? (n5[0] ?? null) : null;
 
   const limpar = () => {
     setDescricao("");

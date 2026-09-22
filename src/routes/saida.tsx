@@ -48,7 +48,7 @@ function Saida() {
   );
 
   const selecionado: Item | null =
-    opcoes.find((i) => i.id === itemId) ?? (opcoes.length === 1 ? opcoes[0] : null);
+    opcoes.find((i) => i.id === itemId) ?? (opcoes.length === 1 ? (opcoes[0] ?? null) : null);
 
   const ultimasSaidas = movimentos.filter((m) => m.tipo === "saida").slice(0, 6);
 
@@ -237,7 +237,7 @@ function Bloco({
 }: {
   titulo: string;
   valor: string;
-  alerta?: "baixo" | "critico";
+  alerta?: "baixo" | "critico" | undefined;
 }) {
   return (
     <div className="rounded-md bg-card p-3">
